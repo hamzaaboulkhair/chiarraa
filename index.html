@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Chiarra!</title>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #FFD1DC, #FFB6C1);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    section {
+      padding: 60px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #hero {
+      background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+    }
+    h1 {
+      font-size: 3em;
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #fff;
+      color: #FF69B4;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      margin-top: 20px;
+    }
+    button:hover { transform: scale(1.05); }
+    #section1 img,
+    #section3 img {
+      width: 250px;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    .compliments p {
+      font-size: 1.4em;
+      margin: 10px 0;
+    }
+    #message-container {
+      max-width: 700px;
+      margin: 20px auto;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    #message-container p {
+      font-size: 1.2em;
+      line-height: 1.5em;
+      margin: 15px 0;
+    }
+    /* Balloon styles */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      border-radius: 50% 50% 50% 50%;
+      opacity: 0.8;
+      animation: floatUp linear;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(-120vh) translateX(30px) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Music -->
+  <audio id="bg-music" src="audio/your-birthday-song.mp3" loop></audio>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <h1>Chiarra, click me!</h1>
+    <button id="btn1">Click Here ❤️</button>
+  </section>
+
+  <!-- Compliments Section -->
+  <section id="section1">
+    <img src="images/photo1.jpg" alt="Chiarra">
+    <div class="compliments">
+      <p>You are so talented!</p>
+      <p>You are so pretty!</p>
+      <p>You are so hot!</p>
+    </div>
+    <button id="btn2">What the hell, click me one more time!</button>
+  </section>
+
+  <!-- Final Message Section -->
+  <section id="section2">
+    <div id="message-container">
+      <p>My dearest Chiarra,</p>
+      <p>Even though you live far away now, I still feel your warmth from our time together in Morocco. Those rooftop naps and late-night laughs changed me forever.</p>
+      <p>You are the purest, loveliest soul I've ever known. I'm so grateful for every moment: our secret kisses, silly jokes, and the way you make me see the world in a new light.</p>
+      <p>Today is your special day, and I hope this little web surprise brings a smile to your face. I love you more than words can say.</p>
+      <p>Happy Birthday, my beautiful Chiarra!</p>
+    </div>
+    <button id="btn3">Click here to see another photo!</button>
+  </section>
+
+  <!-- Picture Section -->
+  <section id="section3">
+    <img src="us.jpg" alt="Your Picture">
+  </section>
+
+  <!-- Balloon Animation Container -->
+  <div id="balloon-container"></div>
+
+  <script>
+    // Ensure music plays on first interaction
+    document.body.addEventListener('click', () => {
+      const music = document.getElementById('bg-music');
+      if (music.paused) music.play();
+    }, { once: true });
+
+    // Scroll buttons
+    document.getElementById('btn1').addEventListener('click', () => {
+      document.getElementById('section1').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.getElementById('btn2').addEventListener('click', () => {
+      document.getElementById('section2').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.getElementById('btn3').addEventListener('click', () => {
+      document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Balloon function
+    const balloonContainer = document.getElementById('balloon-container');
+    const colors = ['#FF6961', '#77DD77', '#AEC6CF', '#FFD1DC', '#F49AC2'];
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      const size = Math.random() * 30 + 50;
+      balloon.style.width = size + 'px';
+      balloon.style.height = size * 1.2 + 'px';
+      balloon.style.left = Math.random() * 100 + 'vw';
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.animationDuration = Math.random() * 5 + 7 + 's';
+      balloonContainer.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 12000);
+    }
+    setInterval(createBalloon, 800);
+  </script>
+</body>
+</html>
